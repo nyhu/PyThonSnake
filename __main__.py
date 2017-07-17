@@ -26,7 +26,9 @@ class PyThonSnake(object):
             else:
                 size_max = width
         self.map = collider.Collider(size_max)
-
+        pygame.init()
+        fenetre = pygame.display.set_mode((500, 500))
+        
 
     def raise_error():
         print("error")
