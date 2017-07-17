@@ -10,20 +10,10 @@ import graphic
 
 class Map():
     """docstring for ClassName"""
-    def __init__(self, argv):
+    def __init__(self, max):
         self.snake = Snake()
-        self.max = 32
+        self.max = max
         self.food = Food(self)
-        if len(argv) == 2:
-            try:
-                x = int(argv[1])
-                assert(x > 3 and x < 500)
-            except ValueError:
-                pass
-            except AssertionError:
-                pass
-            else:
-                self.max = x
 
 
 
@@ -33,5 +23,15 @@ class PyThonSnake():
         pass
 
     def init_term(self, argv):
-        self.map = Map(argv)
-        self.spawn_food()
+        max = 32
+        if len(argv) == 2:
+            try:
+                x = int(argv[1])
+                assert(x > 3 and x < 500)
+            except ValueError:
+                pass
+            except AssertionError:
+                pass
+            else:
+                max = x
+        self.map = Map(max)
