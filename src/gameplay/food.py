@@ -1,5 +1,6 @@
 import random
 
+
 class Food():
     """Use to tell food stories when talked to"""
     def __init__(self, map):

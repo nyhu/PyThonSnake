@@ -5,16 +5,7 @@ Hearth of the programm:
         size_x
         size_y
 """
-import gameplay
-import graphic
-
-class Map():
-    """docstring for ClassName"""
-    def __init__(self, max):
-        self.snake = gameplay.Snake()
-        self.max = max
-        self.food = gameplay.Food(self)
-
+from gameplay import map
 
 
 class PyThonSnake():
@@ -34,4 +25,4 @@ class PyThonSnake():
                 pass
             else:
                 max = x
-        self.map = Map(max)
+        self.map = map.Map(max)
