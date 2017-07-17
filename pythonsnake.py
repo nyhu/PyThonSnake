@@ -11,9 +11,9 @@ import graphic
 class Map():
     """docstring for ClassName"""
     def __init__(self, max):
-        self.snake = Snake()
+        self.snake = gameplay.Snake()
         self.max = max
-        self.food = Food(self)
+        self.food = gameplay.Food(self)
 
 
 
