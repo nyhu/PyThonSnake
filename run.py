@@ -8,28 +8,35 @@ import pygame
 from pygame.locals import *
 from src import collider
 
+
 class PyThonSnake(object):
     """Only compatible with terminal at the moment"""
     def __init__(self):
         self.map = 0
 
+    def init_map(self, str):
+        size_max = 32
+        try:
+            width = int(str)
+            assert width > 3 and width < 500
+        except ValueError:
+            pass
+        except AssertionError:
+            pass
+        else:
+            size_max = width
+        self.map = collider.Collider(size_max)
+
     def init_window(self, argv):
         """ Initialize game in a terminal """
-        size_max = 32
-        if len(argv) >= 2:
-            try:
-                width = int(argv[1])
-                assert width > 3 and width < 500
-            except ValueError:
-                pass
-            except AssertionError:
-                pass
-            finally:
-                size_max = width
-        self.map = collider.Collider(size_max)
+
+        if (len(argv) == 2):
+            self.init_map(argv[1])
+        else:
+            self.init_map("")
         pygame.init()
         window = pygame.display.set_mode((500, 500))
-        scale = 500 // size_max
+        scale = 500 // self.map.max
         background = pygame.image.load("background.jpg").convert()
         background = pygame.transform.scale(background, (500, 500))
         snake_sprite = pygame.image.load("snake_sprite.png").convert()
@@ -38,7 +45,7 @@ class PyThonSnake(object):
         food_sprite = pygame.transform.scale(food_sprite, (scale, scale))
         working = 1
         while working:
-            window.blit(background, (0,0))
+            window.blit(background, (0, 0))
             if not self.map.move():
                 print("YOU LOOOOSE !!!")
                 working = 0
@@ -59,9 +66,9 @@ class PyThonSnake(object):
                         self.map.snake.go_south()
                     elif event.key == K_LEFT:
                         self.map.snake.go_west()
-            pygame.time.delay(250)
+            pygame.time.delay(150)
 
-    def raise_error():
+    def raise_error(self):
         print("error")
 
 play = PyThonSnake()
