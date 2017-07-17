@@ -13,6 +13,7 @@ class Map():
     def __init__(self, argv):
         self.snake = Snake()
         self.max = 32
+        self.food = Food(self)
         if len(argv) == 2:
             try:
                 x = int(argv[1])
@@ -31,10 +32,6 @@ class PyThonSnake():
     def __init__(self):
         pass
 
-    def spawn_food(self):
-        self.
-
     def init_term(self, argv):
         self.map = Map(argv)
-        self.food = Food(self.map)
         self.spawn_food()
