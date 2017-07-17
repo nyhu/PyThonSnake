@@ -1,9 +1,11 @@
 """ ... """
 from src import snake, food
+from pygame import font
 
 class Collider(object):
     """docstring for ClassName"""
     def __init__(self, size_max):
+        self.decimal_pi = "3@14159265359"
         self.max = size_max
         self.snake = snake.Snake(self)
         self.food = food.Food(self)
@@ -20,8 +22,16 @@ class Collider(object):
     def to_window(self, window, snake_sprite, food_sprite, scale):
         pos_x, pos_y = self.food.get()
         window.blit(food_sprite, (pos_x * scale, pos_y * scale))
-        for pos_x, pos_y in self.snake.get():
+        pi_txt = font.Font(None, 24)
+        snake = self.snake.get()
+        i = len(snake)
+        for pos_x, pos_y in snake:
+            print(self.decimal_pi[i - 1:i])
+            snake_sprite = pi_txt.render(self.decimal_pi[i - 1:i],1,(0,0,0))
             window.blit(snake_sprite, (pos_x * scale, pos_y * scale))
+            i -= 1
+            if i == 0:
+                i = len(self.decimal_pi)
 
     def move(self):
         print(self)
@@ -44,11 +54,3 @@ class Collider(object):
         if self.snake.collide(pos_x, pos_y):
             return False
         return True
-
-    def colide(self, pos_x, pos_y):
-        """ Give the collision type """
-        if self.food.collide(pos_x, pos_y):
-            return 'FOOD'
-        elif self.snake.collide(pos_x, pos_y):
-            return 'SNAKE'
-        return None

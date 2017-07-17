@@ -40,6 +40,7 @@ class PyThonSnake(object):
         while working:
             window.blit(background, (0,0))
             if not self.map.move():
+                print("YOU LOOOOSE !!!")
                 working = 0
             self.map.to_window(window, snake_sprite, food_sprite, scale)
             pygame.display.flip()
