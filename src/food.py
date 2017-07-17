@@ -2,13 +2,13 @@ import random
 
 class Food():
     """Use to tell food stories when talked to"""
-    def __init__(self, map):
+    def __init__(self, collider):
         """declare variables"""
         self.pos_x = 0
         self.pos_y = 0
-        self.map = map
-        self.size = map.max
-        self.spawn()
+        self.map = collider
+        self.size = collider.max
+        print("collecting food on a map size {0}".format(self.size))
 
     def spawn(self):
         """ Generate food """
@@ -19,6 +19,7 @@ class Food():
                 self.pos_x = new_pos_x
                 self.pos_y = new_pos_y
                 break
+        print("food collected at x = {}, y = {}".format(self.pos_x, self.pos_y))
 
     def collide(self, pos_x, pos_y):
         """tell where food is"""

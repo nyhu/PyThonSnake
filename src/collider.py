@@ -1,13 +1,15 @@
 """ ... """
-import snake
-import food
+from src import snake, food
 
-class Map():
+class Collider():
     """docstring for ClassName"""
-    def __init__(self, max):
-        self.max = max
+    def __init__(self, size_max):
+        self.max = size_max
         self.snake = snake.Snake(self)
         self.food = food.Food(self)
+        # Food.spawn call collider.is_free who call self.food,
+        # So food have to be ready to spawn !
+        self.food.spawn()
 
     def eat(self, pos_x, pos_y):
         """ Serve eatable food as True statement
