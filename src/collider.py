@@ -24,14 +24,14 @@ class Collider(object):
         window.blit(food_sprite, (pos_x * scale, pos_y * scale))
         pi_txt = font.Font(None, 24)
         snake = self.snake.get()
-        i = len(snake)
-        for pos_x, pos_y in snake:
-            print(self.decimal_pi[i - 1:i])
-            snake_sprite = pi_txt.render(self.decimal_pi[i - 1:i],1,(0,0,0))
+        i = 0
+        for pos_x, pos_y in reversed(snake):
+            print(self.decimal_pi[i:i + 1])
+            snake_sprite = pi_txt.render(self.decimal_pi[i:i + 1],1,(0,0,0))
             window.blit(snake_sprite, (pos_x * scale, pos_y * scale))
-            i -= 1
-            if i == 0:
-                i = len(self.decimal_pi)
+            i += 1
+            if i == len(self.decimal_pi):
+                i = 2
 
     def move(self):
         print(self)
