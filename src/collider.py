@@ -1,7 +1,7 @@
 """ ... """
 from src import snake, food
 
-class Collider():
+class Collider(object):
     """docstring for ClassName"""
     def __init__(self, size_max):
         self.max = size_max
@@ -25,3 +25,11 @@ class Collider():
         if self.snake.collide(pos_x, pos_y):
             return False
         return True
+
+    def colide(self, pos_x, pos_y):
+        """ Give the collision type """
+        if self.food.collide(pos_x, pos_y):
+            return 'FOOD'
+        elif self.snake.collide(pos_x, pos_y):
+            return 'SNAKE'
+        return None

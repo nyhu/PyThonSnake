@@ -4,19 +4,18 @@ Hearth of the program:
     RUN : python3.6 __main__.py [MAP SIZE]
 """
 import sys
+import pygame
 from src import collider
 
-
-class PyThonSnake():
+class PyThonSnake(object):
     """Only compatible with terminal at the moment"""
     def __init__(self):
         self.map = 0
-        pass
 
-    def init_term(self, argv):
+    def init_window(self, argv):
         """ Initialize game in a terminal """
         size_max = 32
-        if len(argv) == 2:
+        if len(argv) >= 2:
             try:
                 width = int(argv[1])
                 assert width > 3 and width < 500
@@ -28,6 +27,12 @@ class PyThonSnake():
                 size_max = width
         self.map = collider.Collider(size_max)
 
+
+    def raise_error():
+        print("error")
+
+play = PyThonSnake()
 if __name__ == "__main__":
-    play = PyThonSnake()
-    play.init_term(sys.argv)
+    play.init_window(sys.argv)
+else:
+    play.raise_error()

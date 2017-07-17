@@ -1,4 +1,4 @@
-class Snake():
+class Snake(object):
     """Run map for tuna"""
     def __init__(self, collider):
         self.map = collider

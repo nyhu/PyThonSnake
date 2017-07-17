@@ -1,6 +1,6 @@
 import random
 
-class Food():
+class Food(object):
     """Use to tell food stories when talked to"""
     def __init__(self, collider):
         """declare variables"""
