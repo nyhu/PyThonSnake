@@ -11,8 +11,23 @@ class Snake():
             (self.head_x, self.head_y + 1),
         ]
 
+    def collide(self, pos_x, pos_y):
+        """ Tell if collide at pos_x, pos_y """
+        # Check collision on head
+        if self.head_x == pos_x and self.head_y == pos_y:
+            return True
+        # Check collision along the tail
+        for pox, poy in self.tail:
+            if pox == pos_x and poy == pos_y:
+                return True
+        return False
+
     def move(self):
-        """ Follow direction to delete a tail at the bottom an add a head ahead """
+        """ Follow direction
+            Ask for food ahead, if not, delete a tail at the bottom
+            Ask for collision ahead,
+                if not, add a head ahead
+                else return False and wait for death"""
         # ADD HEAD : initialize position for next head
         next_head_x = self.head_x
         next_head_y = self.head_y

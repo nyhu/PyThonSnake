@@ -5,6 +5,7 @@ Hearth of the programm:
         size_x
         size_y
 """
+import sys
 from gameplay import map
 
 
@@ -26,3 +27,7 @@ class PyThonSnake():
             else:
                 max = x
         self.map = map.Map(max)
+
+if __name__ == "__main__":
+    main = pythonsnake.PyThonSnake()
+   	main.init_term(sys.argv)
