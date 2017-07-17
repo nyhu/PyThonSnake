@@ -11,6 +11,18 @@ class Snake(object):
             (self.head_x, self.head_y + 1),
         ]
 
+    def __repr__(self):
+        mess = "I A SNAKE with a head on x = {}, y = {}".format(self.head_x, self.head_y)
+        mess += "\nMY TAIL :"
+        for pos_x, pos_y in self.tail:
+            mess += "\nx = {}, y = {}".format(pos_x, pos_y)
+        return mess
+
+    def get(self):
+        tail = list(self.tail)
+        tail.append((self.head_x, self.head_y))
+        return tail
+
     def collide(self, pos_x, pos_y):
         """ Tell if collide at pos_x, pos_y """
         # Check collision on head
@@ -65,22 +77,23 @@ class Snake(object):
             return True
         return False
 
+    def _go_there(self, direction):
+        """ Change snake direction """
+        if self.map.is_free_from_snake(*self._get_a_head_ahead(direction)):
+            self.direction = direction
+
     def go_north(self):
         """ Key_north """
-        if self.map.is_free(self._get_a_head_ahead("NORTH")):
-            self.direction = "NORTH"
+        self._go_there("NORTH")
 
     def go_east(self):
         """ key_east """
-        if self.map.is_free(self._get_a_head_ahead("EAST")):
-            self.direction = "EAST"
+        self._go_there("EAST")
 
     def go_south(self):
         """ key_south """
-        if self.map.is_free(self._get_a_head_ahead("SOUTH")):
-            self.direction = "SOUTH"
+        self._go_there("SOUTH")
 
     def go_west(self):
         """ key_west """
-        if self.map.is_free(self._get_a_head_ahead("WEST")):
-            self.direction = "WEST"
+        self._go_there("WEST")

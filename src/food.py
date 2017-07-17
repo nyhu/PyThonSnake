@@ -10,6 +10,12 @@ class Food(object):
         self.size = collider.max
         print("collecting food on a map size {0}".format(self.size))
 
+    def __repr__(self):
+        return "I AM FOOD on sit x = {}, y = {}".format(self.pos_x, self.pos_y)
+
+    def get(self):
+        return (self.pos_x, self.pos_y)
+
     def spawn(self):
         """ Generate food """
         while 42:
